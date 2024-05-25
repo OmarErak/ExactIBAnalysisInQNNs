@@ -9,9 +9,8 @@ data:
 
 # Run experiment
 quantize:
-	python helpers/quantize.py SYN-Tanh 8
-	python helpers/quantize.py SYN-ReLU 8
-	python helpers/quantize.py MNIST-Bottleneck-2 8 0 20
+
+	python quantize.py MNIST-Bottleneck-2 8 0 1
 binning:
 	python helpers/binning.py SYN-Tanh
 	python helpers/binning.py SYN-ReLU
@@ -32,7 +31,7 @@ quantize-archs:
 # Create latex plots
 plot-quantize:
 	mkdir -p plots
-	python helpers/plot.py quantize
+	python plot.py quantize
 	# I-planes
 	cd helpers/latex; lualatex SYN_8b_ReLU_IP
 	cd helpers/latex; lualatex SYN_8b_ReLU_MI

@@ -2,8 +2,8 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_model_optimization as tfmo
 from tensorflow import keras 
-from tensorflow.keras import layers as L
-
+#from tensorflow.keras import layers as L
+import tf_keras.layers as L
 from ..util import quantization as IBQ
 
 def _get_init(init):

@@ -59,6 +59,7 @@ def run_experiment(
         print(">> Fitting model, "+str(epochs)+" epochs")
         ts = time()
         if prefit_random>0: print(">>> Prefitting to random labels: "+str(prefit_random)+" epochs")
+        print("will enter tain")
         info, train_acc, test_acc = train_model(Model,lr,batch_size,epochs,train,test,X,prefit_random=prefit_random,estimators=lmest, seed=seed+rep+restarts)
         if info is None:
             print("!!! Restarting repetition")
@@ -131,6 +132,7 @@ def prep_data(data, seed):
 
 # Model training
 def train_model(Model, lr, batch_size, epochs, train_data, test_data, X, prefit_random=False, estimators=None, seed=None):
+    print("Enter train model func")
     model, quantized = Model()
     
     X_train,y_train = train_data
@@ -164,6 +166,7 @@ def train_model(Model, lr, batch_size, epochs, train_data, test_data, X, prefit_
         
         # Shuffle labels
         random_y_train = tf.random.shuffle(y_train)
+        print("Enter train")
         model.fit(
             X_train,
             random_y_train,
@@ -187,6 +190,7 @@ def train_model(Model, lr, batch_size, epochs, train_data, test_data, X, prefit_
         auto_stop=True
     )
     # Fit
+    print("Training")
     hist = model.fit(
             X_train,
             y_train,

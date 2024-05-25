@@ -25,6 +25,7 @@ class TrainingTracker(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs=None):
         # Check if bad fitting = bad acc and no change
+        print(epoch)
         acc = logs['accuracy']
         if self.astop and acc < THRESHOLD and epoch>=1000:
             self.model.stop_training = True

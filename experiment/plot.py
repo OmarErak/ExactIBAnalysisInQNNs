@@ -41,6 +41,7 @@ def latex_MI_ranks(est,out_suf,data_path):
         print("File not found",(data_path,est))
         return
     epochs2,repeats = iio.load_MI_repeats(data_path,est,load_prefit=False)
+    print(repeats)
     assert (epochs==epochs2).all()
 
     n_rep, n_epoch, n_layer = repeats.shape
@@ -50,10 +51,10 @@ def latex_MI_ranks(est,out_suf,data_path):
     repeats.sort(key=lambda x: x[1])
     repeats = [rep.reshape(-1,n_layer//2,2) for rep,_ in repeats]
     relevant = [
-        ("best",repeats[0]),
-        ("middle",repeats[n_rep//2]),
-        ("2nd_worst", repeats[-2]),
-        ("worst", repeats[-1])
+        ("best",repeats[0])
+        # ("middle",repeats[n_rep//2]),
+        # ("2nd_worst", repeats[-2]),
+        # ("worst", repeats[-1])
     ]
     for name, rep in relevant:
         df  = {"x":[],"y":[],"c":[]}
@@ -115,16 +116,16 @@ def latex_accuracy(out_suf,data_path):
     df.to_csv(out_file,index_label="epoch")
 
 if EXP=="quantize":
-    latex_MI("quantized_layer_8_bits", "SYN-Tanh/8/", "out/quantized/SYN-Tanh/8/")
-    latex_MI_ranks("quantized_layer_8_bits", "SYN-Tanh/8/", "out/quantized/SYN-Tanh/8/")
-    latex_MI("quantized_layer_8_bits", "SYN-ReLU/8/", "out/quantized/SYN-ReLU/8/")
-    latex_MI_ranks("quantized_layer_8_bits", "SYN-ReLU/8/", "out/quantized/SYN-ReLU/8/")
+    # latex_MI("quantized_layer_8_bits", "SYN-Tanh/8/", "out/quantized/SYN-Tanh/8/")
+    # latex_MI_ranks("quantized_layer_8_bits", "SYN-Tanh/8/", "out/quantized/SYN-Tanh/8/")
+    # latex_MI("quantized_layer_8_bits", "SYN-ReLU/8/", "out/quantized/SYN-ReLU/8/")
+    # latex_MI_ranks("quantized_layer_8_bits", "SYN-ReLU/8/", "out/quantized/SYN-ReLU/8/")
     latex_MI("quantized_layer_8_bits", "MNIST-Bottleneck-2/", "out/quantized/MNIST-Bottleneck-2/8/")
     latex_MI_ranks("quantized_layer_8_bits", "MNIST-Bottleneck-2/", "out/quantized/MNIST-Bottleneck-2/8/")
     
     for var in ("X","Y"):
-        latex_MI_var("quantized_layer_8_bits", "SYN-Tanh/8/","out/quantized/SYN-Tanh/8/",var)
-        latex_MI_var("quantized_layer_8_bits", "SYN-ReLU/8/","out/quantized/SYN-ReLU/8/",var)
+        # latex_MI_var("quantized_layer_8_bits", "SYN-Tanh/8/","out/quantized/SYN-Tanh/8/",var)
+        # latex_MI_var("quantized_layer_8_bits", "SYN-ReLU/8/","out/quantized/SYN-ReLU/8/",var)
         latex_MI_var("quantized_layer_8_bits", "MNIST-Bottleneck-2/","out/quantized/MNIST-Bottleneck-2/8/",var)
 
 elif EXP=="accuracy":

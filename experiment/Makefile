@@ -33,10 +33,6 @@ plot-quantize:
 	mkdir -p plots
 	python plot.py quantize
 	# I-planes
-	cd helpers/latex; lualatex SYN_8b_ReLU_IP
-	cd helpers/latex; lualatex SYN_8b_ReLU_MI
-	cd helpers/latex; lualatex SYN_8b_Tanh_IP
-	cd helpers/latex; lualatex SYN_8b_Tanh_MI
 	cd helpers/latex; lualatex REAL_8b_BN_IP
 	cd helpers/latex; lualatex REAL_8b_BN_MI
 	# Clean and move

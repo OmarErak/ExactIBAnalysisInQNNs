@@ -27,10 +27,15 @@ if __name__ == '__main__':
         _model  = load_model("MNIST-10")
         dname   = "MNIST"
         epochs  = 3000
+    elif exp[:6]=="FMNIST":
+        act_fun = "relu"
+        _model  = load_model(exp)
+        dname   = "fashion_MNIST_combined_labels"
+        epochs  = 3000
     elif exp[:5]=="MNIST":
         act_fun = "relu"
         _model  = load_model(exp)
-        dname   = "MNIST"
+        dname   = "fashion_MNIST"
         epochs  = 3000
     if _model is None:
         print("Unknown experiment or model!")
